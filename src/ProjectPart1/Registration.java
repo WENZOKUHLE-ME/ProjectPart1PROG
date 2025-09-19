@@ -9,6 +9,7 @@ import java.util.Scanner;
  *
  * @author RC_Student_lab
  */
+
 public class Registration {
     private String name;
     private String surname;
@@ -16,6 +17,7 @@ public class Registration {
     private String password;
     private String cellphoneNumber;
 
+    // ----------------- User Input Method -----------------
     public void userInput(Scanner scan) {
         // Prompt user for name
         System.out.println("Please enter your name:");
@@ -44,8 +46,8 @@ public class Registration {
         } while (!checkCellphoneNumber(cellphoneNumber));
     }
 
+    // ----------------- Username Validation -----------------
     public boolean checkUsername(String username) {
-        // Username must have an underscore and be 5 characters or less
         if (username != null && username.contains("_") && username.length() <= 5) {
             System.out.println("Username successfully captured");
             return true;
@@ -55,8 +57,8 @@ public class Registration {
         }
     }
 
+    // ----------------- Password Validation -----------------
     public boolean checkPassword(String password) {
-        // Check password requirements
         boolean hasMinLength = password != null && password.length() >= 8;
         boolean hasUppercase = password != null && password.matches(".*[A-Z].*");
         boolean hasDigit = password != null && password.matches(".*\\d.*");
@@ -71,8 +73,8 @@ public class Registration {
         }
     }
 
+    // ----------------- Cellphone Validation -----------------
     public boolean checkCellphoneNumber(String cellphoneNumber) {
-        // Check cellphone number: must start with +27 and have 9 digits (total length 12)
         if (cellphoneNumber != null && cellphoneNumber.matches("\\+27\\d{9}")) {
             System.out.println("Cellphone number successfully captured");
             return true;
@@ -82,7 +84,16 @@ public class Registration {
         }
     }
 
-    // Getter methods
+    // ----------------- Test Helper Method -----------------
+    public void userInputForTest(String name, String surname, String username, String password, String cellphone) {
+        this.name = name;
+        this.surname = surname;
+        this.username = username;
+        this.password = password;
+        this.cellphoneNumber = cellphone;
+    }
+
+    // ----------------- Getter Methods -----------------
     public String getName() {
         return name;
     }
@@ -103,7 +114,3 @@ public class Registration {
         return cellphoneNumber;
     }
 }
-
-    
-   
-      

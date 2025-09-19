@@ -12,16 +12,14 @@ import java.util.Scanner;
  */
 public class Login {
     private Registration register;
-
-    // Constructor
+   
     public Login(Registration register) {
         if (register == null) {
             throw new IllegalArgumentException("Registration object cannot be null");
         }
         this.register = register;
     }
-
-    // Method to handle login process
+   
     public boolean log() {
         Scanner scan = new Scanner(System.in);
         try {
@@ -43,15 +41,14 @@ public class Login {
             scan.close(); // Close Scanner to prevent resource leak
         }
     }
-
-    // Method to verify username and password
+    
     public boolean checkUserDetails(String username, String password) {
         if (username == null || password == null) {
             System.out.println("Invalid input: Username or password is null.");
             return false;
         }
 
-        // Assuming Registration has getter methods instead of public fields
+        // Compare with Registration getters
         if (username.equals(register.getUsername()) && password.equals(register.getPassword())) {
             System.out.println("Welcome, " + register.getName() + "!");
             return true;
@@ -60,6 +57,10 @@ public class Login {
             return false;
         }
     }
+
+    
+    // Allows test classes to login without Scanner
+    public boolean testLogin(String username, String password) {
+        return checkUserDetails(username, password);
+    }
 }
-
-
