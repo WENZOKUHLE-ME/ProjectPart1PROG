@@ -3,6 +3,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
  */
 package ProjectPart1;
+//import ProjectPart1.Login.QuickChat;
 import java.util.Scanner;
 /**
  *
@@ -21,6 +22,7 @@ public class ProjectPart1 {
      
         // Create Scanner for user input
         Scanner scan = new Scanner(System.in);
+        
 
         // Display a welcoming message
         System.out.println("****************************************");
@@ -34,14 +36,19 @@ public class ProjectPart1 {
             Registration register = new Registration();
             register.userInput(scan); // Collect user details
 
-            // Step 2: User Login
+             // Step 2: User Login
             System.out.println("\nGreat job, " + register.getName() + "! Now, let's log you in.");
-            Login login = new Login(register);
-            boolean isLoggedIn = login.log();
+            Login login = new Login(register);  // ✅ Create login object from Login class
+            boolean isLoggedIn = login.log(); 
 
+            // Step 3: Provide feedback based on login result
             // Step 3: Provide feedback based on login result
             if (isLoggedIn) {
                 System.out.println("\nYou're successfully logged in! Enjoy your day, " + register.getName() + "!");
+
+                // ✅ After login success, start QuickChat
+                Login.QuickChat quickChat = login.new QuickChat(); // ✅ Create inner class instance
+                quickChat.startChat();
             } else {
                 System.out.println("\nSorry, login didn't work out this time. Please try again later!");
             }
@@ -55,6 +62,8 @@ public class ProjectPart1 {
 
         // Closing message
         System.out.println("\nThank you for using our system! You're awesome! 😊");
+        
+        
     }
 }
     
